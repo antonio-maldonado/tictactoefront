@@ -13,7 +13,7 @@ export const Boards = () => {
     const jti = getUserId();
 
     try {
-      const response = await fetch('http://localhost:8080/api/user/' + jti, {
+      const response = await fetch('https://tictactoe-zwst.onrender.com/api/user/' + jti, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${jwt.token}`,

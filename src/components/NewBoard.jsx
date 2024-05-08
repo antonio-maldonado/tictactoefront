@@ -20,7 +20,7 @@ export const NewBoard = () => {
   const navigate = useNavigate();
     const deleteHandler= async()=>{
       try {
-        const response = await fetch('http://localhost:8080/api/board/'+id, {
+        const response = await fetch('https://tictactoe-zwst.onrender.com/api/board/'+id, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${jwt.token}`,
@@ -44,11 +44,11 @@ export const NewBoard = () => {
 
     const startNewGame = async () => {
       setLoading(false);
-      let endpoint = "http://localhost:8080/api/start/"+jti;
+      let endpoint = "https://tictactoe-zwst.onrender.com/api/start/"+jti;
       let method = "POST";
 
       if((id!=null || id!=undefined)){
-        endpoint = "http://localhost:8080/api/board/"+id;
+        endpoint = "https://tictactoe-zwst.onrender.com/api/board/"+id;
         method = "GET";
         }
 
@@ -87,7 +87,7 @@ export const NewBoard = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/play', {
+            const response = await fetch('https://tictactoe-zwst.onrender.com/api/play', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
