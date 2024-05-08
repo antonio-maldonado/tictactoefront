@@ -7,14 +7,12 @@ import { Navbar } from './components/Navbar';
 import { decodeJWT, getJWT } from './util/functions';
 import { NewBoard } from './components/NewBoard';
 export const App = () => {
-    // const navigate = useNavigate();
     const jwt = getJWT();
     const [isLogged,setIsLogged]=useState(jwt!=null);
 
     const handlerLogout = ()=>{
         setIsLogged(false);
         localStorage.clear();
-        //  navigate("/");
         window.location.href="/";
     }
 
