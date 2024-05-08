@@ -19,8 +19,9 @@ export const App = () => {
     useEffect(()=>{
 
         const verifyLogin = ()=>{
-            if(jwt!=null){
-                const decodedJWT=decodeJWT(jwt);
+            const jwt1 = getJWT();
+            if(jwt1!=null){
+                const decodedJWT=decodeJWT(jwt1);
                 
                 if(decodedJWT!=null){
                     setIsLogged(true);

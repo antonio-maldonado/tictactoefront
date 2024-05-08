@@ -24,6 +24,7 @@ export const Login = ({setIsLogged}) => {
 
           localStorage.setItem("jwt",JSON.stringify(data));
            if(localStorage.getItem("jwt")!=null){
+            console.log("jwt");
             setIsLogged(true);
           }
         
