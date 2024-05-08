@@ -22,6 +22,7 @@ export const Boards = () => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setUser(data);
         setLoading(false);
       } else {
