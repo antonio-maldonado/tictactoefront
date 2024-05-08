@@ -1,4 +1,4 @@
-import {  BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import {  BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { useEffect, useState } from 'react';
@@ -40,8 +40,6 @@ export const App = () => {
                 <BrowserRouter>
                     <Navbar handlerLogout={handlerLogout}/>
                     <Routes>
-                        <Route path='*' element={<Navigate to='/' />} />
-
                         <Route path='/' element={<Home/>}/>
                         <Route path='/boards' element={<Boards/>} />
                         <Route path='/game/:id?' element={<NewBoard/>}/>
