@@ -14,7 +14,7 @@ export const App = () => {
     const handlerLogout = ()=>{
         setIsLogged(false);
         localStorage.clear();
-        navigate("/");
+        // navigate("/");
     }
 
     useEffect(()=>{
