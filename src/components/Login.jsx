@@ -20,8 +20,9 @@ export const Login = ({setIsLogged}) => {
 
       if (response.ok) {
         const data = await response.json();
-        setIsLogged(true);
+        
         localStorage.setItem("jwt",JSON.stringify(data));
+        setIsLogged(true);
       } else {
         setError('Login failed, check your credentials');
       }

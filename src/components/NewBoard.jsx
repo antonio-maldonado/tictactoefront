@@ -10,10 +10,10 @@ export const NewBoard = () => {
   const {id} = useParams();
 
   const EMPTY_BOARD = Array(9).fill(0);
-
+  const [loading,setLoading] = useState(false);
   const [board, setBoard] = useState(EMPTY_BOARD);
   const [gameId, setGameId] = useState(null);
-  const [isFinished, setIsFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState(0);
   const [error, setError] = useState(null);
   const [input, setInput] = useState("board");
 
@@ -43,6 +43,7 @@ export const NewBoard = () => {
     },[]);
 
     const startNewGame = async () => {
+      setLoading(false);
       let endpoint = "http://localhost:8080/api/start/"+jti;
       let method = "POST";
 
@@ -67,16 +68,21 @@ export const NewBoard = () => {
           setGameId(data.id);
           setIsFinished(data?.isFinished);
           setInput(data.name);
+          setLoading(true);
         } else {
+          setLoading(true);
           throw new Error("Error");
         }
       } catch (err) {
+        setLoading(true);
         setError("Error starting new game");
       } 
     };
 
     const playMove = async (index) => {
-        if (board[index] !== 0 || isFinished) {
+      setLoading(false);
+        if (board[index] !== 0 || isFinished===1) {
+          setLoading(true);
             return; 
         }
 
@@ -94,23 +100,35 @@ export const NewBoard = () => {
               }),
             });
 
-            const data = await response.json();
-            setBoard(data.boardState.map((square) => square.state));
-            setIsFinished(data?.isFinished);
 
-            if (data?.isFinished) {
-              setError("Game Over");
-            }
-            if (response.data?.isFinished) {
+            if(response.ok){
+              const data = await response.json();
+              setIsFinished(data?.isFinished);
+
+              if (data?.isFinished==1) {
+                
                 setError("Game Over");
-            }
+              }
+              if (response.data?.isFinished==1) {
+                  setError("Game Over");
+              }
+              console.log(data)
+              // data.boardState.sort((a, b) => a.id - b.id);
+              setBoard(data.boardState.map((square) => square.state));
 
+              setLoading(true);
+            }
+            
             if(response.status == 409){
+              setLoading(true);
               throw new Error('Game finished');
+              
             }
         } catch (error) {
+          setLoading(true);
             setError(error.message);
         }
+        setLoading(true);
     };
 
     const renderSquare = (index) => {
@@ -118,13 +136,13 @@ export const NewBoard = () => {
         return (
             <button className='button__square' 
               onClick={() => playMove(index)} 
-              disabled={isFinished}>
+              disabled={isFinished===1 || !loading}>
                 {value}
             </button>
         );
     };
 
-    if (isFinished){
+    if (isFinished===1){
       <button onClick={startNewGame}>Start New Game</button>
     }
 
@@ -134,9 +152,11 @@ export const NewBoard = () => {
     }
 
     return (
+      
         <div className='div__container'>
             <h1>Tic-Tac-Toe</h1>
             {error && <div>{error}</div>}
+            {!loading && <p>Loading</p>}
             <div className='board__container'>
                 <div className='board__row'>
                     {renderSquare(0)}
@@ -154,6 +174,7 @@ export const NewBoard = () => {
                     {renderSquare(8)}
                 </div>
             </div>
+            
 
             <input type="text" 
                   name="title" 
@@ -162,7 +183,7 @@ export const NewBoard = () => {
                   onChange={onInputChange}
               />
 
-            <p>{isFinished}</p>
+            <p>{isFinished===1}</p>
 
             <Link to={'/boards'} className='link__button'>Back to boards</Link>
            

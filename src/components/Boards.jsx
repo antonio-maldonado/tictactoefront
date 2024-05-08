@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getJWT } from "../util/functions";
+import { getJWT, getUserId } from "../util/functions";
 import { Link } from "react-router-dom";
 import { format, parseISO } from 'date-fns';
 
@@ -7,10 +7,13 @@ const jwt = getJWT();
 
 export const Boards = () => {
   const [user, setUser] = useState(null);
+  const [loading,setLoading] = useState(true);
 
   const getBoards = async () => {
+    const jti = getUserId();
+
     try {
-      const response = await fetch('http://localhost:8080/api/user/1', {
+      const response = await fetch('http://localhost:8080/api/user/' + jti, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${jwt.token}`,
@@ -21,6 +24,7 @@ export const Boards = () => {
       if (response.ok) {
         const data = await response.json();
         setUser(data);
+        setLoading(false);
       } else {
         throw new Error("Error");
       }
@@ -45,6 +49,7 @@ export const Boards = () => {
             </button>
           );
       });
+
       return (
         <Link key={board.id}
             className="board__card" 
@@ -68,7 +73,6 @@ export const Boards = () => {
     
     return <div className="boards__container">
       {boards}
-      
     </div>;
   }
 
@@ -79,12 +83,15 @@ export const Boards = () => {
   return (
     <div className="div__container">
       <h2>Boards</h2>
+      {loading && <p>Loading...</p>}
+      {!loading && <>
+        <h4>{user?.email}</h4>
 
-      <h4>{user?.email}</h4>
+        <Link to={'/game/'} className="link__button">New game</Link>
 
-      <Link to={'/game/'} className="link__button">New game</Link>
-
-      {user?.boards && displayBoards()}
+        {user?.boards && displayBoards()}
+      </>}
+     
     </div>
   )
 }
