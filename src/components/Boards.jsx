@@ -3,8 +3,6 @@ import { getJWT, getUserId } from "../util/functions";
 import { Link } from "react-router-dom";
 import { format, parseISO } from 'date-fns';
 
-
-
 export const Boards = () => {
   const jwt = getJWT();
   const [user, setUser] = useState(null);

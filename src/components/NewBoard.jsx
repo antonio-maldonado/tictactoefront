@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { getJWT, getUserId } from '../util/functions';
 import { Link,  useNavigate, useParams } from 'react-router-dom';
 
- const jwt = getJWT();
- const jti = getUserId();
-
 export const NewBoard = () => {
-
+  const jwt = getJWT();
+  const jti = getUserId();
   const {id} = useParams();
 
   const EMPTY_BOARD = Array(9).fill(0);
