@@ -1,4 +1,4 @@
-import {  BrowserRouter, Route, Routes } from 'react-router-dom';
+import {  BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { useEffect, useState } from 'react';
@@ -7,12 +7,14 @@ import { Navbar } from './components/Navbar';
 import { decodeJWT, getJWT } from './util/functions';
 import { NewBoard } from './components/NewBoard';
 export const App = () => {
+    const navigate = useNavigate();
     const jwt = getJWT();
     const [isLogged,setIsLogged]=useState(jwt!=null);
 
     const handlerLogout = ()=>{
         setIsLogged(false);
         localStorage.clear();
+        navigate("/");
     }
 
     useEffect(()=>{
