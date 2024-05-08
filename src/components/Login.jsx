@@ -21,13 +21,10 @@ export const Login = ({setIsLogged}) => {
 
       if (response.ok) {
         const data = await response.json();
-        
-       
 
-        setTimeout(() => {
           localStorage.setItem("jwt",JSON.stringify(data));
-          setIsLogged(true);
-        }, "3000");
+          
+        
         // navigate("/home")("/home")
       } else {
         setError('Login failed, check your credentials');
@@ -37,7 +34,9 @@ export const Login = ({setIsLogged}) => {
     }
   };
 
-
+  if(localStorage.getItem("jwt")!=null){
+    setIsLogged(true);
+  }
 
   return (
   <div className='div__login'>
