@@ -7,9 +7,9 @@ import { Navbar } from './components/Navbar';
 import { decodeJWT, getJWT } from './util/functions';
 import { NewBoard } from './components/NewBoard';
 export const App = () => {
-    const jwt = getJWT();
-    const [jwt2,setJwt] = useState(jwt);
-    const [isLogged,setIsLogged]=useState(jwt2!=null);
+    
+    const [jwt,setJwt] = useState(getJWT);
+    const [isLogged,setIsLogged]=useState(jwt!=null);
 
     const handlerLogout = ()=>{
         setIsLogged(false);
@@ -20,9 +20,9 @@ export const App = () => {
     useEffect(()=>{
 
         const verifyLogin = ()=>{
-            const jwt1 = getJWT();
-            if(jwt1!=null){
-                const decodedJWT=decodeJWT(jwt1);
+            setJwt(getJWT());
+            if(jwt!=null){
+                const decodedJWT=decodeJWT(jwt);
                 
                 if(decodedJWT!=null){
                     setIsLogged(true);
@@ -33,7 +33,7 @@ export const App = () => {
         }
 
         verifyLogin();
-    },[isLogged,jwt2])
+    },[isLogged,jwt])
 
     return (
         <>  
