@@ -98,33 +98,28 @@ export const NewBoard = () => {
               }),
             });
 
-
             if(response.ok){
               const data = await response.json();
               setIsFinished(data?.isFinished);
 
               if (data?.isFinished==1) {
-                
                 setError("Game Over");
               }
               if (response.data?.isFinished==1) {
                   setError("Game Over");
               }
-              console.log(data)
-              // data.boardState.sort((a, b) => a.id - b.id);
-              setBoard(data.boardState.map((square) => square.state));
 
+              setBoard(data.boardState.map((square) => square.state));
               setLoading(true);
             }
             
             if(response.status == 409){
               setLoading(true);
               throw new Error('Game finished');
-              
             }
         } catch (error) {
           setLoading(true);
-            setError(error.message);
+          setError(error.message);
         }
         setLoading(true);
     };
