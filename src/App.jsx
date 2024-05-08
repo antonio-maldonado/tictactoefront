@@ -12,8 +12,8 @@ export const App = () => {
     const [isLogged,setIsLogged]=useState(jwt!=null);
 
     const handlerLogout = ()=>{
-        setIsLogged(false);
         localStorage.clear();
+        setIsLogged(false);
         navigate("/");
     }
 
