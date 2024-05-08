@@ -143,22 +143,19 @@ body {
     grid-template-rows: 1fr 1fr 1fr;
     justify-self: start;
     height: 150px;
-   
     margin-bottom: 0px;
 }
 
-.button__square{
+.button__square {
     min-width: 50px;
     min-height: 50px;
 }
 
-.board__container{
+.board__container {
     height: 150px;
 }
 
-
-
-.link__button{
+.link__button {
     display: block;
     width: fit-content;
     text-decoration: none;
@@ -174,24 +171,36 @@ body {
     font-weight: 700;
 }
 
-h1,h2,h3,h4{
+h1, h2, h3, h4 {
     text-align: center;
     text-decoration: none;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-.boards__container a:visited{
+.boards__container a:visited {
     text-decoration: none;
     color: inherit;
 }
 
-.link__button:hover{
+.link__button:hover {
     opacity: 0.7;
 }
 
-.red{
+.red {
     background-color: red;
+}
+
+@media (max-width: 1000px) {
+    .boards__container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .boards__container {
+        grid-template-columns: 1fr;
+    }
 }
