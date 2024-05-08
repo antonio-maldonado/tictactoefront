@@ -27,7 +27,7 @@ export const Login = ({setIsLogged}) => {
         setTimeout(() => {
           localStorage.setItem("jwt",JSON.stringify(data));
           setIsLogged(true);
-        }, "1000");
+        }, "3000");
         // navigate("/home")("/home")
       } else {
         setError('Login failed, check your credentials');
