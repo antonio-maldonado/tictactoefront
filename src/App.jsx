@@ -6,8 +6,6 @@ import { Boards } from './components/Boards';
 import { Navbar } from './components/Navbar';
 import { decodeJWT, getJWT } from './util/functions';
 import { NewBoard } from './components/NewBoard';
-import { CustomBoard } from './components/CustomBoard';
-
 export const App = () => {
     const jwt = getJWT();
     const [isLogged,setIsLogged]=useState(jwt!=null);
@@ -45,7 +43,6 @@ export const App = () => {
                         <Route path='/' element={<Home/>}/>
                         <Route path='/boards' element={<Boards/>} />
                         <Route path='/game/:id?' element={<NewBoard/>}/>
-                        <Route path='/play' element={<CustomBoard/>}/>
                     </Routes>
                 </BrowserRouter>
             }  
