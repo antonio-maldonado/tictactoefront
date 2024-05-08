@@ -27,7 +27,7 @@ export const NewBoard = () => {
         });
 
         if (response.ok) {
-          navigate("/boards")
+          navigate("/boards");
         } else {
           setError("Error deleting this board");
         }

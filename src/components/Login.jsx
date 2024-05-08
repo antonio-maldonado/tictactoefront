@@ -7,7 +7,6 @@ export const Login = ({setIsLogged}) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  //  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -21,15 +20,12 @@ export const Login = ({setIsLogged}) => {
 
       if (response.ok) {
         const data = await response.json();
+        localStorage.setItem("jwt",JSON.stringify(data));
 
-          localStorage.setItem("jwt",JSON.stringify(data));
-           if(localStorage.getItem("jwt")!=null){
-            console.log("jwt");
-            setIsLogged(true);
-            // navigate("/home")
-          }
+        if(localStorage.getItem("jwt")!=null){
+          setIsLogged(true);
+        }
         
-        // navigate("/home")("/home")
       } else {
         setError('Login failed, check your credentials');
       }
@@ -37,12 +33,6 @@ export const Login = ({setIsLogged}) => {
       setError(err);
     }
   };
-
- if(localStorage.getItem("jwt")!=null){
-      console.log("jwt");
-      setIsLogged(true);
-      // navigate("/home")
-    }
 
   return (
   <div className='div__login'>
