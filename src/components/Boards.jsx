@@ -23,6 +23,8 @@ export const Boards = () => {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        data.boards.sort((a, b) => a.id - b.id);
+
         setUser(data);
         setLoading(false);
       } else {
