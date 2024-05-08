@@ -7,8 +7,16 @@ export const decodeJWT=(token)=>{
     try{
         decodedJWT = jwtDecode(token.token)
     }catch(error){
-        throw new Error(error);
+       console.error("No JWT found")
     }
 
     return decodedJWT;
+}
+
+export const getUserId = ()=>{
+    const jwt = getJWT();
+    let decodedJWT = decodeJWT(jwt);
+    if(decodedJWT!=null) return decodedJWT.jti;
+
+    return -1;
 }

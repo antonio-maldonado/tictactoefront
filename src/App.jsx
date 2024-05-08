@@ -44,7 +44,7 @@ export const App = () => {
                     <Routes>
                         <Route path='/' element={<Home/>}/>
                         <Route path='/boards' element={<Boards/>} />
-                        <Route path='/game' element={<NewBoard/>}/>
+                        <Route path='/game/:id?' element={<NewBoard/>}/>
                         <Route path='/play' element={<CustomBoard/>}/>
                     </Routes>
                 </BrowserRouter>

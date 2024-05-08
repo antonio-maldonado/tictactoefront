@@ -2,6 +2,7 @@ import {PropTypes} from "prop-types";
 import { Link } from "react-router-dom";
 
 export const Navbar=({handlerLogout})=>{
+
     return(
         <>
             <nav className="navbar">
@@ -11,7 +12,7 @@ export const Navbar=({handlerLogout})=>{
                     </li>
 
                     <li>
-                        <Link to={"/boards"}>Boards</Link>
+                        <Link to={"/boards/"}>Boards</Link>
                     </li>   
 
                     <li>
