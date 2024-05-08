@@ -23,10 +23,10 @@ export const Login = ({setIsLogged}) => {
         const data = await response.json();
 
           localStorage.setItem("jwt",JSON.stringify(data));
-          //  if(localStorage.getItem("jwt")!=null){
-          //   console.log("jwt");
-          //   setIsLogged(true);
-          // }
+           if(localStorage.getItem("jwt")!=null){
+            console.log("jwt");
+            setIsLogged(true);
+          }
         
         // navigate("/home")("/home")
       } else {
