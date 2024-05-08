@@ -1,13 +1,13 @@
 import {  useState } from 'react';
 import {PropTypes} from "prop-types";
- import { useNavigate } from 'react-router-dom';
+//  import { useNavigate } from 'react-router-dom';
 
 export const Login = ({setIsLogged}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-   const navigate = useNavigate();
+  //  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -26,7 +26,7 @@ export const Login = ({setIsLogged}) => {
            if(localStorage.getItem("jwt")!=null){
             console.log("jwt");
             setIsLogged(true);
-            navigate("/home")
+            // navigate("/home")
           }
         
         // navigate("/home")("/home")
@@ -41,7 +41,7 @@ export const Login = ({setIsLogged}) => {
  if(localStorage.getItem("jwt")!=null){
       console.log("jwt");
       setIsLogged(true);
-      navigate("/home")
+      // navigate("/home")
     }
 
   return (
