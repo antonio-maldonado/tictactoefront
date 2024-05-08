@@ -8,7 +8,8 @@ import { decodeJWT, getJWT } from './util/functions';
 import { NewBoard } from './components/NewBoard';
 export const App = () => {
     const jwt = getJWT();
-    const [isLogged,setIsLogged]=useState(jwt!=null);
+    const [jwt2,setJwt] = useState(jwt);
+    const [isLogged,setIsLogged]=useState(jwt2!=null);
 
     const handlerLogout = ()=>{
         setIsLogged(false);
@@ -32,7 +33,7 @@ export const App = () => {
         }
 
         verifyLogin();
-    },[isLogged,jwt])
+    },[isLogged,jwt2])
 
     return (
         <>  
