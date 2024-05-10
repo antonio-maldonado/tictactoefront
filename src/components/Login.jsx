@@ -27,9 +27,11 @@ export const Login = ({setIsLogged}) => {
         }
         
       } else {
+        setIsLogged(true);
         setError('Login failed, check your credentials');
       }
     } catch (err) {
+      setIsLogged(true);
       setError(err);
     }
   };
